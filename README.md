@@ -10,13 +10,13 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 - [Multiple PDF Files Word Count](#multiple-pdf-files-word-count)
 ## Data stuff
 
-**Description:** just a place to put all the stuff i did while playing around with matplotlib and plotly
+**Description:** just a place to put all the stuff i did while playing around with Matplotlib and Plotly
 
 **Technologies Used:** Matplotlib,Plotly
 
 ## Rickroll virus
 
-**Description:** funny virus that will spawn a lot of giff windowses with a rickroll, it does this by running the script recursively without stoping
+**Description:** funny virus that will spawn a lot of giffs windowses with a rickroll, it does this by running the script recursively without stoping
 
 ### :warning: Attention
 **Important Notice:** This project is old and the code is very messy, will get a refactor in the future
