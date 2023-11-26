@@ -7,7 +7,7 @@ import subprocess
 def Linux():
     if not exists(os.getcwd() + "/main.py"):
         subprocess.run(f"gnome-terminal -- bash -c ' cd {os.getcwd()}'",shell = True)
-        subprocess.run(f"gnome-terminal -- bash -c ' curl -o main.py https://raw.githubusercontent.com/rauldhs/rickroll_virus/main/main.py'",shell = True)
+        subprocess.run(f"gnome-terminal -- bash -c ' curl -o main.py https://raw.githubusercontent.com/rauldhs/python-mini-projects/rickroll_virus/main/main.py'",shell = True)
 
         time.sleep(0.5)
 
@@ -21,7 +21,7 @@ def Linux():
             playsound("Never_gonna_give_you_up.mp3")
         else:
             subprocess.run(f"gnome-terminal -- bash -c ' cd {os.getcwd()}'",shell = True)
-            subprocess.run(f"gnome-terminal -- bash -c ' curl -o Never_gonna_give_you_up.mp3 https://github.com/rauldhs/rickroll_virus/blob/main/Never%20gonna%20give%20you%20up.mp3?raw=true'",shell=True)
+            subprocess.run(f"gnome-terminal -- bash -c ' curl -o Never_gonna_give_you_up.mp3 https://github.com/rauldhs/python-mini-projects/rickroll_virus/blob/main/Never%20gonna%20give%20you%20up.mp3?raw=true'",shell=True)
         
             playsound("Never_gonna_give_you_up.mp3")
 
