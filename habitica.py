@@ -55,7 +55,7 @@ black_wizard_ascii = """........................................................
 ...........................................................................
 """
 
-def update_completed_quests(json_file, quests_data):
+def update_completed_quests(file_path, quests_data):
     """
     Updates active quest from quests_data and writes it to the JSON file.
     """
@@ -84,7 +84,7 @@ def update_completed_quests(json_file, quests_data):
             quests_data["active_quest"] += 1
 
             # Update the JSON file with modified quests_data
-            with open(json_file, 'w') as json_file:
+            with open(file_path, 'w') as json_file:
                 json.dump(quests_data, json_file, indent=2)
             return
     else:
@@ -221,7 +221,7 @@ def main():
 
         # Call the function to process completed tasks
         # Threading update_completed_quests function
-        update_completed_quests_thread = Thread(target=update_completed_quests, args=(file, quests_data))
+        update_completed_quests_thread = Thread(target=update_completed_quests, args=(args.filepath, quests_data))
         update_completed_quests_thread.start()
         loading_animation("Updating quests", update_completed_quests_thread)
         update_completed_quests_thread.join()
