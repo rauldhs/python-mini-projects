@@ -1,7 +1,7 @@
 """
 Cool python script to spam rickroll gif windows
 """
-
+ 
 from tkinter import Toplevel, Label, Tk
 from io import BytesIO
 import random
