@@ -17,10 +17,10 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 
 **Description:** this script is quite good and refined, it will automatically add a questline from the json file you give it, to the app habitica, its very good in combination with something like chatgpt for generating the quests and then adding them to the todo app
 
-**Technologies Used:** just normal standar libraries and some stuff for multi threading cuz who doesnt like cool CLI animations
+**Technologies Used:** just normal standard libraries and some stuff for multi threading cuz who doesn't like cool CLI animations
 
-## Multiple pdf files word count
+## Estimate read time
 
-**Description:** every site restricted the amount of pdfs i can scan at a time so i made my own 
+**Description:** every site restricted the amount and size of documents i can scan at a time so i over engineered my own 
 
-**Technologies Used:** the PyPDF2 library and thats it lol
+**Technologies Used:** the colorama, fitz library along with basic python stuff like getopt and thats it lol
