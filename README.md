@@ -5,7 +5,6 @@ this is just a repo where im gonna dumb a lot of unrelated python mini projects,
 this is just a brief overview,each folder has its own readme, if the file isnt in a folder check the readme from here:
 ## Table of Contents
 - [Data Stuff](#data-stuff)
-- [Rickroll Virus](#rickroll-virus)
 - [Habitica Quest Generator](#habitica-quest-generator)
 - [Multiple PDF Files Word Count](#multiple-pdf-files-word-count)
 ## Data stuff
@@ -13,15 +12,6 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 **Description:** just a place to put all the stuff i did while playing around with Matplotlib and Plotly
 
 **Technologies Used:** Matplotlib,Plotly
-
-## Rickroll virus
-
-**Description:** funny virus that will spawn a lot of giffs windowses with a rickroll, it does this by running the script recursively without stoping
-
-### :warning: Attention
-**Important Notice:** This project is old and the code is very messy, will get a refactor in the future
-
-**Technologies Used:** pyglet and other standard librarie
 
 ## Habitica quest generator
 
