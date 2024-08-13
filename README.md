@@ -27,5 +27,6 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 
 **Instalation**
 1. Download repository
-2. ```bash pip install -r estimate_read_time_requirements.txt```
-3. run python estimated_read_time.py -h
+2. ```bash
+3.  pip install -r estimate_read_time_requirements.txt```
+4. run python estimated_read_time.py -h
