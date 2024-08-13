@@ -10,8 +10,10 @@ from os.path import isfile, join
 from datetime import timedelta
 import fitz  # PyMuPDF
 from colorama import init, Fore, Style
+from tqdm import tqdm
 
 init(autoreset=True)
+tqdm.dynamic_ncols = True
 
 class Document:
     """
@@ -36,18 +38,24 @@ class Document:
             reading_speed (int): Reading speed.
         """
         self.file_name = file_name
+        
         self.reading_speed = reading_speed
         self.read_doc()
 
     def read_doc(self):
         """Calculates document statistics."""
         with fitz.open(self.file_name) as doc:
-            text = "\n".join([page.get_text() for page in doc])
+            self.name = os.path.basename(doc.name)
+            
+            text = ""
+            for page_num in tqdm(range(doc.page_count), desc=f'Scanning {Fore.RED}{self.name}', unit="pages", ncols=100,colour="GREEN"):
+                page = doc.load_page(page_num)
+                text += page.get_text()
+                
             self.total_words = len(text.split())
             self.total_mins_to_read = self.total_words / self.reading_speed
             self.total_formatted_time_to_read = format_time(self.total_mins_to_read)
             self.total_pages = doc.page_count
-            self.name = os.path.basename(doc.name)
 
 
 def format_time(minutes):
@@ -79,16 +87,33 @@ def scan_directory(directory, reading_speed, extensions,recursive):
     Returns:
         list: List of Document objects.
     """
+    if not os.path.isdir(directory):
+        raise ValueError(f"Directory does not exist: {directory}")
+    directory = os.path.normpath(directory)
+    
     documents = []
     
+    bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}, {elapsed}<{remaining}]"
+    
+    files = []
     if not recursive:
-        files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f)) and f.endswith(extensions)]
-        documents.extend([Document(os.path.join(directory, file), reading_speed) for file in files])
+        files = [
+            f for f in os.listdir(directory)
+            if os.path.isfile(os.path.join(directory, f)) and f.endswith(extensions)
+        ]
+        with tqdm(files, desc=f'Scanning {root}', unit="file", 
+                bar_format=bar_format, 
+                ncols=100,colour="CYAN") as pbar:
+            for file in pbar:
+                documents.append(Document(os.path.join(directory, file), reading_speed))
     else:
         for root, dirs, files in os.walk(directory):
             files = [f for f in files if f.endswith(extensions)]
-            documents.extend([Document(os.path.join(root, file), reading_speed) for file in files])
-    
+            with tqdm(files, desc=f'Scanning {root}', unit="file", 
+                    bar_format=bar_format, 
+                    ncols=100,colour="CYAN") as pbar:
+                for file in pbar:
+                    documents.append(Document(os.path.join(root, file), reading_speed))
     return documents
 
 def print_documents_stats(all_documents):
@@ -130,6 +155,7 @@ def print_documents_stats(all_documents):
     total_row = f"{Fore.MAGENTA}{'Total':<{col1_width}} {Fore.BLUE}{total_words:<{col2_width}} {Fore.YELLOW}{total_pages:<{col3_width}} {Fore.GREEN}{total_reading_time:<{col4_width}}{Style.RESET_ALL}"
     print("=" * size)
     print(total_row)
+    print(f"{Fore.GREEN}{len(all_documents)} documents")
 def main(argv):
     """
     Parses command-line arguments and prints reading statistics.
@@ -164,14 +190,18 @@ def main(argv):
             directories = arg
         elif opt in ("-f", "--files"):
             files = arg
-            
-    for directory in directories.split(","):
-            all_documents.extend(scan_directory(directory, reading_speed, extensions,recursive))
-    for file in files.split(","):
-                if file.endswith(extensions):
-                    all_documents.append(Document(file, reading_speed))
-                else:
-                    print("Unsupported file format.")
+    
+    if directories:      
+        for directory in directories.split(","):
+                if directory.endswith("\""):
+                    directory = directory[:-1] + '\\'
+                all_documents.extend(scan_directory(directory, reading_speed, extensions,recursive))
+    if files:
+        for file in files.split(","):
+                    if file.endswith(extensions):
+                        all_documents.append(Document(file, reading_speed))
+                    else:
+                        print("Unsupported file format.")
     print_documents_stats(all_documents)
    
 if __name__ == "__main__":

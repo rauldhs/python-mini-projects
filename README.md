@@ -24,3 +24,8 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 **Description:** every site restricted the amount and size of documents i can scan at a time so i over engineered my own 
 
 **Technologies Used:** the colorama, fitz library along with basic python stuff like getopt and thats it lol
+
+**Instalation**
+1. Download repository
+2. ```bash pip install -r estimate_read_time_requirements.txt```
+3. run python estimated_read_time.py -h
