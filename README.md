@@ -26,7 +26,12 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 **Technologies Used:** the colorama, fitz library along with basic python stuff like getopt and thats it lol
 
 **Instalation**
-1. Download repository
-2. ```bash
-3.  pip install -r estimate_read_time_requirements.txt```
-4. run python estimated_read_time.py -h
+1. Download the repository.
+2. Install requirements:
+   ```bash
+   pip install -r estimate_read_time_requirements.txt
+   ```
+3. Run:
+   ```bash
+   python estimated_read_time.py -h
+   ```
