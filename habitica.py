@@ -133,9 +133,9 @@ def add_quest_line(quest_data):
     difficulty_values = {"Trivial": "0.1", "Easy": "1", "Medium": "1.5", "Hard": "2"}
     
     description = (
-        f"# Quest Giver:\n{quest_data_to_add['quest_giver']}"
-        f"\n\n# Description\n{quest_data_to_add['description']}"
-        f"\n\n# Objective\n{quest_data_to_add['objective']}"
+        f"## Quest Giver:\n{quest_data_to_add['quest_giver']}"
+        f"\n\n## Description\n{quest_data_to_add['description']}"
+        f"\n\n## Objective\n{quest_data_to_add['objective']}"
     )
     
     difficulty = difficulty_values[quest_data_to_add["difficulty"]] 
@@ -150,7 +150,7 @@ def add_quest_line(quest_data):
     for quest in quest_data["quests"]
     ]
     params = {
-        "text": quest_data_to_add["name"],
+        "text": "# " + quest_data_to_add["name"],
         "notes": description,
         "type": "todo",
         "priority": difficulty,
@@ -171,9 +171,9 @@ def add_quest(quest_data):
     difficulty_values = {"Trivial": "0.1", "Easy": "1", "Medium": "1.5", "Hard": "2"}
     
     description = (
-        f"# Quest Giver:\n{quest_data_to_add['quest_giver']}"
-        f"\n\n# Description\n{quest_data_to_add['description']}"
-        f"\n\n# Objective\n{quest_data_to_add['objective']}"
+        f"## Quest Giver:\n{quest_data_to_add['quest_giver']}"
+        f"\n\n## Description\n{quest_data_to_add['description']}"
+        f"\n\n## Objective\n{quest_data_to_add['objective']}"
     )
     
     difficulty = difficulty_values[quest_data_to_add["difficulty"]] 
@@ -185,7 +185,7 @@ def add_quest(quest_data):
     }
 
     params = {
-        "text": quest_data_to_add["name"],
+        "text": "# " + quest_data_to_add["name"],
         "notes": description,
         "type": "todo",
         "priority": difficulty
