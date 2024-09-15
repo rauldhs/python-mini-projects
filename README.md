@@ -6,7 +6,8 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 ## Table of Contents
 - [Data Stuff](#data-stuff)
 - [Habitica Quest Generator](#habitica-quest-generator)
-- [Multiple PDF Files Word Count](#multiple-pdf-files-word-count)
+- [Estimate read time](#estimate-read-time)
+- [Anki wanikani mnemonics adder](#anki-wanikani-mnemonics-adder)
 ## Data stuff
 
 **Description:** just a place to put all the stuff i did while playing around with Matplotlib and Plotly
@@ -19,6 +20,17 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 
 **Technologies Used:** just normal standard libraries and some stuff for multi threading cuz who doesn't like cool CLI animations
 
+**Instalation**
+1. Download the repository.
+2. Install requirements:
+   ```bash
+   pip install -r habitica_requirements.txt
+   ```
+3. Run:
+   ```bash
+   python habitica.py -f quest_lines/questline.json
+   ```
+   
 ## Estimate read time
 
 **Description:** every site restricted the amount and size of documents i can scan at a time so i over engineered my own 
@@ -35,3 +47,5 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
    ```bash
    python estimated_read_time.py -h
    ```
+## Anki wanikani mnemonics adder
+**Description:** this was supposed to be a one time run to add mnemonics to the 2k/6k deck on anki using the wanikani api, its extremely slow due to the rate limit of the api, please dont use :)
