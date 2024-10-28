@@ -79,7 +79,7 @@ def update_completed_quests(file_path, quests_data):
         response_data = response.json()
         # Extract completed quest names from API response
         completed_quest_names = [quest["text"] for quest in response_data["data"]]
-        if quest_to_check in completed_quest_names:
+        if "# " + quest_to_check in completed_quest_names:
             # Update active quest from quests_data
             quests_data["active_quest"] += 1
 
@@ -96,7 +96,6 @@ def check_if_quest_active(quests_data):
     Check if a specific quest is active and if the questline is started.
     """
     quest_to_check = quests_data["quests"][quests_data["active_quest"]]["name"]
-    
     # Set headers and parameters for the API request
     headers = {
         "x-api-user": USER_ID,
@@ -115,7 +114,7 @@ def check_if_quest_active(quests_data):
         # Extract active quest names from API response
         active_quest_names = [quest["text"] for quest in response_data["data"]]
 
-        if quests_data["quest_line"]["name"] not in active_quest_names and quests_data["active_quest"] < len(quests_data["quests"]):
+        if "# " + quests_data["quest_line"]["name"] not in active_quest_names and quests_data["active_quest"] < len(quests_data["quests"]):
             add_quest_line(quests_data)
         if quest_to_check in active_quest_names:
              return True
@@ -236,6 +235,7 @@ def main():
 
         # Threading add_quest function
         if not quest_active:
+
             add_quest_thread = Thread(target=add_quest, args=(quests_data,))
             add_quest_thread.start()
             loading_animation("Starting new quest", add_quest_thread)
@@ -245,6 +245,6 @@ def main():
     else:
         
         print(black_wizard_ascii)
-        print("use -f to list json files")
+        print("use -f to check json files")
 if __name__ == '__main__':
     main()
