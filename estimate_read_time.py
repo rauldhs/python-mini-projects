@@ -48,7 +48,7 @@ class Document:
             self.name = os.path.basename(doc.name)
             
             text = ""
-            for page_num in tqdm(range(doc.page_count), desc=f'Scanning {Fore.RED}{self.name}', unit="pages", ncols=100,colour="GREEN"):
+            for page_num in tqdm(range(doc.page_count), desc=f'Scanning {Fore.RED}{self.name}', unit="pages", ncols=None,colour="GREEN"):
                 page = doc.load_page(page_num)
                 text += page.get_text()
                 
@@ -74,8 +74,7 @@ def format_time(minutes):
     m, s = divmod(s, 60)
     return f"{h} Hours {m} Minutes and {s} Seconds"
 
-
-def scan_directory(directory, reading_speed, extensions,recursive):
+def scan_directory(directory, reading_speed, extensions, recursive):
     """
     Scans a directory and creates Document objects.
 
@@ -93,17 +92,18 @@ def scan_directory(directory, reading_speed, extensions,recursive):
     
     documents = []
     
-    bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt}, {elapsed}<{remaining}]"
+    bar_format = "{l_bar}{bar}| {n_fmt}/{total_fmt}, {elapsed}<{remaining}]"
     
-    files = []
     if not recursive:
+        # Set root for non-recursive scan
+        root = directory
         files = [
             f for f in os.listdir(directory)
             if os.path.isfile(os.path.join(directory, f)) and f.endswith(extensions)
         ]
         with tqdm(files, desc=f'Scanning {root}', unit="file", 
                 bar_format=bar_format, 
-                ncols=100,colour="CYAN") as pbar:
+                ncols=None, colour="CYAN") as pbar:
             for file in pbar:
                 documents.append(Document(os.path.join(directory, file), reading_speed))
     else:
@@ -111,9 +111,10 @@ def scan_directory(directory, reading_speed, extensions,recursive):
             files = [f for f in files if f.endswith(extensions)]
             with tqdm(files, desc=f'Scanning {root}', unit="file", 
                     bar_format=bar_format, 
-                    ncols=100,colour="CYAN") as pbar:
+                    ncols=None, colour="CYAN") as pbar:
                 for file in pbar:
                     documents.append(Document(os.path.join(root, file), reading_speed))
+                    
     return documents
 
 def print_documents_stats(all_documents):
