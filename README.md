@@ -52,7 +52,7 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 **Description:** this was supposed to be a one time run to add mnemonics to the 2k/6k deck on anki using the wanikani api, its extremely slow due to the rate limit of the api, please dont use :)
 
 ## Subtitle files utility
-**Description:** I wanted to watch stuff with subtitles on vlc but the subtitles and the video names were different so it was annoying, 
+**Description:** I wanted to watch stuff with subtitles on vlc but the subtitles and the video names were different so it was annoying
 
 **Instalation**
 1. Download the repository.
