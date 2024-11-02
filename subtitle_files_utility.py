@@ -30,9 +30,10 @@ def rename_all_episodes(directory_path: str, name: str, special_rules: str = "")
                 except OSError as e:
                     print(f"Error renaming '{old_path}': {e}") 
 
-def move_files(directory: str) -> None:
+def move_files(directory: str, subtitles_directory:str) -> None:
     """Move subtitle files into their respective subdirectories based on episode number."""
-    files = os.listdir(directory)
+
+    files = os.listdir(subtitles_directory)
 
     for file_name in files:
         match = re.search(r'_(\d+)\.', file_name)
@@ -61,4 +62,4 @@ if __name__ == "__main__":
     rename_all_episodes(args.directory, args.name, args.rules)
 
     if args.add:
-        move_files(args.add) 
+        move_files(args.add,args.directory) 
