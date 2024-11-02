@@ -56,14 +56,14 @@ if __name__ == "__main__":
     # Set up argument parser
     parser = argparse.ArgumentParser(description="Rename subtitle files in a directory.")
     parser.add_argument("-d", "--directory", type=str, required=True, help="Path to the directory containing subtitle files.")
-    parser.add_argument("-n", "--name", type=str, required=True, help="Base name for the renamed episodes.")
+    parser.add_argument("-n", "--name", type=str,, help="Base name for the renamed episodes.")
     parser.add_argument("-r", "--rules", type=str, default="", help="Special rules for renaming (optional).")
     parser.add_argument("-a", "--add", type=str, help="Specifies directory where to check for subdirectories to put the files in")
     parser.add_argument("-t", "--test", type=bool, default=False,help="Test how the regex will work on the file names")
     args = parser.parse_args()
 
-    if args.directory and args.name:
+    if args.name:
         rename_all_episodes(args.directory, args.name, args.rules, args.test)
 
-    if args.add and args.directory and not args.test:
+    if args.add not args.test:
         move_files(args.add,args.directory) 
