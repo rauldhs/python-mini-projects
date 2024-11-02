@@ -8,6 +8,7 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 - [Habitica Quest Generator](#habitica-quest-generator)
 - [Estimate read time](#estimate-read-time)
 - [Anki wanikani mnemonics adder](#anki-wanikani-mnemonics-adder)
+- [Subtitle files utility](#subtitle-files-utility)
 ## Data stuff
 
 **Description:** just a place to put all the stuff i did while playing around with Matplotlib and Plotly
