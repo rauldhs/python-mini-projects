@@ -8,6 +8,7 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 - [Habitica Quest Generator](#habitica-quest-generator)
 - [Estimate read time](#estimate-read-time)
 - [Anki wanikani mnemonics adder](#anki-wanikani-mnemonics-adder)
+- [Subtitle files utility](#subtitle-files-utility)
 ## Data stuff
 
 **Description:** just a place to put all the stuff i did while playing around with Matplotlib and Plotly
@@ -51,7 +52,8 @@ this is just a brief overview,each folder has its own readme, if the file isnt i
 **Description:** this was supposed to be a one time run to add mnemonics to the 2k/6k deck on anki using the wanikani api, its extremely slow due to the rate limit of the api, please dont use :)
 
 ## Subtitle files utility
-**Description:** I wanted to watch stuff with subtitles on vlc but the subtitles and the video names were different so it was annoying, 
+**Description:** I wanted to watch stuff with subtitles on vlc but the subtitles and the video names were different so it was annoying
+
 **Instalation**
 1. Download the repository.
 2. Run:
