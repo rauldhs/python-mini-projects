@@ -65,5 +65,5 @@ if __name__ == "__main__":
     if args.name:
         rename_all_episodes(args.directory, args.name, args.rules, args.test)
 
-    if args.add not args.test:
+    if args.add and not args.test:
         move_files(args.add,args.directory) 
