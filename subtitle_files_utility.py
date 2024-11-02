@@ -5,7 +5,7 @@ import argparse
 extensions = (".srt", ".ass", ".sub", ".vtt")
 
 # Function to rename SRT files in a directory
-def rename_all_episodes(directory_path: str, name: str, special_rules: str = "") -> None:
+def rename_all_episodes(directory_path: str, name: str, special_rules: str = "", test: bool = False) -> None:
     """Rename subtitle files in a directory according to specified rules."""
     pattern = re.compile(r"(\d+)")
     files = os.listdir(directory_path)
@@ -25,7 +25,8 @@ def rename_all_episodes(directory_path: str, name: str, special_rules: str = "")
                 new_path = os.path.join(directory_path, formatted_name)
 
                 try:
-                    os.rename(old_path, new_path)
+                    if not test:
+                        os.rename(old_path, new_path)
                     print(f"Renamed '{old_path}' to '{new_path}'")
                 except OSError as e:
                     print(f"Error renaming '{old_path}': {e}") 
@@ -40,7 +41,9 @@ def move_files(directory: str, subtitles_directory:str) -> None:
         if match:
             subdirectory_path = os.path.join(directory, match.group(1))
 
-            if file_name.endswith(extensions) and os.path.exists(subdirectory_path):
+            if not os.path.exists(subdirectory_path):
+                os.makedirs(subdirectory_path)
+            if file_name.endswith(extensions):
                 old_path = os.path.join(directory, file_name)
                 new_path = os.path.join(subdirectory_path, file_name)
                 try:
@@ -55,11 +58,11 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--directory", type=str, required=True, help="Path to the directory containing subtitle files.")
     parser.add_argument("-n", "--name", type=str, required=True, help="Base name for the renamed episodes.")
     parser.add_argument("-r", "--rules", type=str, default="", help="Special rules for renaming (optional).")
-    parser.add_argument("-a", "--add", type=str,default=False, help="Specifies directory where to check for subdirectories to put the files in")
+    parser.add_argument("-a", "--add", type=str, help="Specifies directory where to check for subdirectories to put the files in")
+    parser.add_argument("-t", "--test", type=bool, default=False,help="Test how the regex will work on the file names")
     args = parser.parse_args()
 
-    # Call the renaming function
-    rename_all_episodes(args.directory, args.name, args.rules)
+    rename_all_episodes(args.directory, args.name, args.rules, args.test)
 
-    if args.add:
+    if args.add and not args.test:
         move_files(args.add,args.directory) 
