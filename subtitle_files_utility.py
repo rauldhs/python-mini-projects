@@ -62,7 +62,8 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--test", type=bool, default=False,help="Test how the regex will work on the file names")
     args = parser.parse_args()
 
-    rename_all_episodes(args.directory, args.name, args.rules, args.test)
+    if args.directory and args.name:
+        rename_all_episodes(args.directory, args.name, args.rules, args.test)
 
-    if args.add and not args.test:
+    if args.add and args.directory and not args.test:
         move_files(args.add,args.directory) 
