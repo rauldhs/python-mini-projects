@@ -208,7 +208,7 @@ def loading_animation(message,function_thread):
 def main():
     # Create an argument parser
     parser = argparse.ArgumentParser(description='Process some files.')
-    parser.add_argument('-f', '--filepath', type=str, help='Path to the file')
+    parser.add_argument('filepath', type=str, help='Path to the file')
     args = parser.parse_args()
 
     if args.filepath:
